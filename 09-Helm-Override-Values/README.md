@@ -186,13 +186,13 @@ helm list
 - If you need to delete a key from the default values, you may override the value of the key to be null, in which case Helm will remove the key from the overridden values merge.
 ```t
 # Release: myapp901
-helm install myapp901 stacksimplify/mychart1 --atomic
+helm install myapp901 stacksimplify/mychart1 --rollback-on-failure 
 helm list
 helm status myapp901 --show-resources
 http://localhost:31231
 
 # Release: myapp902
-helm install myapp902 stacksimplify/mychart1 --atomic
+helm install myapp902 stacksimplify/mychart1 --rollback-on-failure 
 helm list
 
 # Option-1: Give desired port other than 31231

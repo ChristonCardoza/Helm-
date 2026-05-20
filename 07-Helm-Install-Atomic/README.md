@@ -1,7 +1,7 @@
-# Helm Install Atomic Flag
+# Helm Install rollback-on-failure  Flag
 
 ## Step-01: Introduction
-- We will learn to use `--atomic` flag when installing the Helm Release and also understand the importance of using it in a practical way
+- We will learn to use `--rollback-on-failure ` flag when installing the Helm Release and also understand the importance of using it in a practical way
 
 ## Step-02: Install Helm Chart - Release: dev101
 ```t
@@ -38,18 +38,18 @@ helm list
 ```
 
 
-## Step-04: Install Helm Chart - Release: qa101 with --atomic flag
-- when `--atomic` flagis set, the installation process deletes the installation on failure. 
-- The `--wait` flag will be set automatically if `--atomic` is used
+## Step-04: Install Helm Chart - Release: qa101 with --rollback-on-failure  flag
+- when `--rollback-on-failure ` flagis set, the installation process deletes the installation on failure. 
+- The `--wait` flag will be set automatically if `--rollback-on-failure ` is used
 - `--wait` will wait until all Pods, PVCs, Services, and minimum number of Pods of a Deployment, StatefulSet, or ReplicaSet are in a ready state before marking the release as successful. It will wait for as long as `--timeout`
 - `--timeout`  time to wait for any individual Kubernetes operation (like Jobs for hooks) (default 5m0s)
 ```t
 # Install Helm Chart 
-helm install qa101 stacksimplify/mychart1 --atomic
+helm install qa101 stacksimplify/mychart1 --rollback-on-failure 
 
 # List Helm Release
 helm list 
-Observation: We will not see qa101 FAILED release, --atomic flag deleted the release as soon as it is failed with error
+Observation: We will not see qa101 FAILED release, --rollback-on-failure  flag deleted the release as soon as it is failed with error
 
 Error: INSTALLATION FAILED: 1 error occurred:
 	* Service "qa101-mychart1" is invalid: spec.ports[0].nodePort: Invalid value: 31231: provided port is already allocated
